@@ -1,0 +1,24 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  line-height: 1.4;
+  background-color: skyblue;
+  color: black;
+  font-size: 20px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+
+  a {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .active {
+    color: skyblue;
+    border-bottom: solid 3px white;
+  }
+}
