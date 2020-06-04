@@ -1,20 +1,19 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import Navbar from "./components/Layout/Navbar";
+import { Route } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
 import "semantic-ui-css/semantic.min.css";
 import "./assets/styles/CSS/App.css";
+import Navbar from "./components/Layout/Navbar";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </div>
-    </BrowserRouter>
+    <div>
+      <Navbar />
+      <Route exact path="/" component={Home} />
+
+      <Route path="/about" component={About} />
+    </div>
   );
 };
 

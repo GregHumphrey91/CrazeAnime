@@ -3,32 +3,29 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Ap } from "apollo-boost";
-
-import { gql } from "apollo-boost";
-// or you can use `import gql from 'graphql-tag';` instead
-
+import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
+import { BrowserRouter } from "react-router-dom";
 
 const client = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io",
+  uri: "https://graphql.anilist.co",
+  request: (operation) => {
+    operation.setContext({
+      headers: {
+        "Content-Type": "application/graphql",
+        Accept: "application/json",
+      },
+    });
+  },
 });
-
-// client
-//   .query({
-//     query: gql`
-//       {
-//         rates(currency: "USD") {
-//           currency
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

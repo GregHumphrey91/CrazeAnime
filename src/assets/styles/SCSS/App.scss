@@ -3,22 +3,60 @@ body {
   padding: 0;
   text-align: center;
   line-height: 1.4;
-  background-color: skyblue;
+  background-color: white;
   color: black;
   font-size: 20px;
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
-
   a {
-    color: white;
-    font-size: 20px;
-    margin-right: 10px;
+    color: black;
   }
   .active {
-    color: skyblue;
-    border-bottom: solid 3px white;
+    font-weight: bold;
+    color: red;
+  }
+}
+
+.home {
+  margin: 50px auto;
+  width: 95%;
+  border: solid 1px white;
+  height: auto;
+
+  .search {
+    width: 50%;
+    margin: 15px auto;
+  }
+}
+
+.about {
+  margin: 300px auto;
+}
+// .search {
+//   width: 50%;
+//   margin: 0 auto;
+// }
+// .navbar {
+//   a {
+//     color: white;
+//     font-size: 20px;
+//     margin-right: 10px;
+//   }
+//   .active {
+//     color: skyblue;
+//     border-bottom: solid 3px white;
+//   }
+// }
+
+.error {
+  margin: 200px auto;
+
+  .header {
+    font-size: 50px !important;
+    margin-bottom: 20px !important;
+  }
+  span {
+    font-weight: bold;
   }
 }

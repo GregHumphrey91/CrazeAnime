@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const About = () => {
-    return (
-        <div>
-            Demo
-        </div>
-    )
-}
+  return (
+    <div className="about">
+      <h1>Demo</h1>
+    </div>
+  );
+};
 
-export default About
+export default About;
