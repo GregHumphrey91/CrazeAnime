@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 
-const Search = ({ handleSearch}) => {
+const Search = () => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => setValue(e.target.value);
 
-  const search = (e) => {
-    setValue("");
-  };
+  const search = () => {};
 
   return (
     <div className="search">

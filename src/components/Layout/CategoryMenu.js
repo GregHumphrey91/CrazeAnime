@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "semantic-ui-react";
 
-const CategoryMenu = ({ genres }) => {
-  const [activeItem, setActive] = useState("");
-
-  const handleItemClick = (e, { name }) => setActive(name);
+const CategoryMenu = ({ genres, activeGenre, setActiveGenre }) => {
+  const handleItemClick = (e, { name }) => setActiveGenre(name);
 
   const menuItems = () =>
     genres.map((genre, index) => {
       // Don't laugh
-      if (genre !== "Hentai")
+      if (genre !== "Hentai" && genre !== "Ecchi")
         return (
           <Menu.Item
             key={index}
             name={genre}
-            active={activeItem === genre}
+            active={activeGenre === genre}
             onClick={handleItemClick}
           >
             {genre}

@@ -11,7 +11,6 @@ const App = () => {
     <div>
       <Navbar />
       <Route exact path="/" component={Home} />
-
       <Route path="/about" component={About} />
     </div>
   );
