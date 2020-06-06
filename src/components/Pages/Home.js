@@ -22,13 +22,13 @@ const Home = () => {
   useEffect(() => {
     if (activeGenre)
       getGenreResults({
-        variables: { genre: activeGenre, page: 1, perPage: 3 },
+        variables: { genre: activeGenre, page: 1, perPage: 10 },
       });
   }, [activeGenre, getGenreResults]);
 
   const renderHomePage = () => (
     <div className="home">
-      <Grid columns={2}>
+      <Grid stretched  columns={2}>
         <Grid.Column width={2}>
           <CategoryMenu
             genres={genres.GenreCollection}
@@ -36,9 +36,10 @@ const Home = () => {
             setActiveGenre={setActiveGenre}
           />
         </Grid.Column>
-        <Search />
-        {results ? <Results results={results} /> : ""}
-        <Grid.Column width={14}></Grid.Column>
+
+        <Grid.Column width={14}>
+          {results ? <Results results={results} /> : ""}
+        </Grid.Column>
       </Grid>
     </div>
   );

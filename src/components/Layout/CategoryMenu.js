@@ -22,6 +22,9 @@ const CategoryMenu = ({ genres, activeGenre, setActiveGenre }) => {
 
   return (
     <Menu className="navbar" size="small" vertical>
+      <Menu.Item>
+        <Menu.Header as="h1">All Genres</Menu.Header>
+      </Menu.Item>
       {menuItems()}
     </Menu>
   );
