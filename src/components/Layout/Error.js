@@ -2,7 +2,6 @@ import React from "react";
 import { Icon, Header } from "semantic-ui-react";
 
 const Error = ({ error: { message } }) => {
-  console.log(message);
   return (
     <div className="error">
       <Header as="h1">

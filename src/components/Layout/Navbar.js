@@ -1,7 +1,6 @@
 import React from "react";
-import { Menu, Header } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-import Search from "../Pages/Search";
 
 const Navbar = () => {
   return (
@@ -17,9 +16,6 @@ const Navbar = () => {
         </Menu.Item>
         <Menu.Item position="right">
           <Menu.Header as="h1">Craze Anime</Menu.Header>
-        </Menu.Item>
-        <Menu.Item position="right">
-          <Search />
         </Menu.Item>
       </Menu>
     </div>

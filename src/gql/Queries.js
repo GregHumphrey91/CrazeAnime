@@ -1,13 +1,16 @@
 import gql from "graphql-tag";
 
-export const ANIME_LIST = gql`
-  query($id: Int) {
-    Media(id: $id, type: ANIME) {
+export const SEARCH_BY_NAME = gql`
+  query($search: String) {
+    Media(search: $search, type: ANIME) {
       id
       title {
-        romaji
         english
         native
+        userPreferred
+      }
+      coverImage {
+        medium
       }
     }
   }
@@ -20,7 +23,7 @@ export const GENRE_COLLECTION = gql`
 `;
 
 export const SEARCH_BY_GENRE = gql`
-  query($genre: String, $page: Int, $perPage: Int) {
+  query($search: String, $genre: String, $page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -30,15 +33,220 @@ export const SEARCH_BY_GENRE = gql`
         perPage
       }
 
-      media(genre: $genre, type: ANIME) {
+      media(search: $search, genre: $genre, type: ANIME) {
         id
+        idMal
+
         title {
           english
+          native
+          userPreferred
         }
+
         coverImage {
           medium
         }
+
+        startDate {
+          day
+          month
+          year
+        }
+
+        endDate {
+          day
+          month
+          year
+        }
+
+        season
+
+        seasonYear
+
+        seasonInt
+
+        episodes
+
+        averageScore
       }
+    }
+  }
+`;
+
+export const ANIME_DETAILS = gql`
+  query($id: Int, $page: Int, $perPage: Int) {
+    Media(id: $id, type: ANIME) {
+      id
+      title {
+        english
+        native
+        userPreferred
+      }
+      coverImage {
+        medium
+      }
+
+      studios(isMain: true) {
+        nodes {
+          name
+        }
+      }
+
+      characters(page: $page, perPage: $perPage) {
+        pageInfo {
+          currentPage
+          lastPage
+          perPage
+          total
+        }
+        edges {
+          node {
+            id
+            name {
+              first
+              last
+              full
+              native
+            }
+            image {
+              large
+            }
+            description(asHtml: false)
+            isFavourite
+            siteUrl
+          }
+
+          role
+
+          voiceActors(sort: LANGUAGE) {
+            image {
+              medium
+            }
+
+            name {
+              first
+              last
+              full
+              native
+            }
+          }
+        }
+      }
+
+      idMal
+
+      type
+
+      format
+
+      status
+
+      description(asHtml: false)
+
+      startDate {
+        day
+        month
+        year
+      }
+
+      endDate {
+        day
+        month
+        year
+      }
+
+      season
+
+      seasonYear
+
+      seasonInt
+
+      episodes
+
+      duration
+
+      chapters
+
+      volumes
+
+      countryOfOrigin
+
+      isLicensed
+
+      hashtag
+
+      trailer {
+        id
+        site
+        thumbnail
+      }
+
+      updatedAt
+
+      coverImage {
+        medium
+        color
+      }
+
+      bannerImage
+
+      genres
+
+      synonyms
+
+      averageScore
+
+      meanScore
+
+      popularity
+
+      isLocked
+
+      trending
+
+      favourites
+
+      isFavourite
+
+      isAdult
+
+      nextAiringEpisode {
+        id
+        airingAt
+        timeUntilAiring
+        episode
+        media {
+          title {
+            english
+          }
+        }
+      }
+
+      externalLinks {
+        id
+        url
+        site
+      }
+      streamingEpisodes {
+        title
+        thumbnail
+        url
+        site
+      }
+
+      rankings {
+        id
+        rank
+        year
+        allTime
+        context
+      }
+
+      siteUrl
+
+      autoCreateForumThread
+      isRecommendationBlocked
+      modNotes
     }
   }
 `;

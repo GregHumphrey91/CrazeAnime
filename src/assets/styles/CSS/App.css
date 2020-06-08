@@ -8,12 +8,8 @@ body {
   font-size: 20px;
 }
 
-.navbar a {
-  color: black;
-}
-.navbar .active {
-  font-weight: bold;
-  color: red;
+.navbar {
+  background-color: black;
 }
 
 .home {
@@ -22,13 +18,34 @@ body {
   border: solid 1px white;
   height: auto;
 }
-.home .search {
-  width: 50%;
-  margin: 0 auto;
+.home .searchbar {
+  width: 50% !important;
+  margin: 0 auto !important;
 }
 
 .about {
   margin: 300px auto;
+}
+
+.search-results {
+  border: none !important;
+}
+.search-results .no-results {
+  margin: 50px 450px;
+  padding: 100px;
+}
+
+.thumbnail {
+  margin-top: 15px !important;
+}
+
+.card {
+  height: 100%;
+}
+.card:hover {
+  transition: 0.4s;
+  background-color: #9999;
+  cursor: pointer;
 }
 
 .error {
@@ -40,6 +57,17 @@ body {
 }
 .error span {
   font-weight: bold;
+}
+
+.anime-details .banner {
+  margin: 0 auto !important;
+}
+.anime-details.staff-Info {
+  margin: 200px auto !important;
+}
+
+.character {
+  height: auto;
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -9,13 +9,7 @@ body {
 }
 
 .navbar {
-  a {
-    color: black;
-  }
-  .active {
-    font-weight: bold;
-    color: red;
-  }
+  background-color: black;
 }
 
 .home {
@@ -24,30 +18,35 @@ body {
   border: solid 1px white;
   height: auto;
 
-  .search {
-    width: 50%;
-    margin: 0 auto;
+  .searchbar {
+    width: 50% !important;
+    margin: 0 auto !important;
   }
 }
 
 .about {
   margin: 300px auto;
 }
-// .search {
-//   width: 50%;
-//   margin: 0 auto;
-// }
-// .navbar {
-//   a {
-//     color: white;
-//     font-size: 20px;
-//     margin-right: 10px;
-//   }
-//   .active {
-//     color: skyblue;
-//     border-bottom: solid 3px white;
-//   }
-// }
+
+.search-results {
+  border: none !important;
+  .no-results {
+    margin: 50px 450px;
+    padding: 100px;
+  }
+}
+
+.thumbnail {
+  margin-top: 15px !important;
+}
+.card {
+  height: 100%;
+  &:hover {
+    transition: 0.4s;
+    background-color: #9999;
+    cursor: pointer;
+  }
+}
 
 .error {
   margin: 200px auto;
@@ -59,4 +58,15 @@ body {
   span {
     font-weight: bold;
   }
+}
+.anime-details {
+  .banner {
+    margin: 0 auto !important;
+  }
+  &.staff-Info {
+    margin: 200px auto !important;
+  }
+}
+.character {
+  height: auto;
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
 
-const CategoryMenu = ({ genres, activeGenre, setActiveGenre }) => {
-  const handleItemClick = (e, { name }) => setActiveGenre(name);
+const CategoryMenu = ({ genres, activeGenre, setActiveGenre, setSearch }) => {
+  const handleItemClick = (e, { name }) =>{ 
+    setActiveGenre(name)
+    setSearch(null);
+  };
 
   const menuItems = () =>
     genres.map((genre, index) => {
