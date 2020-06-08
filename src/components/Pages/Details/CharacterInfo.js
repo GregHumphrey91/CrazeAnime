@@ -26,7 +26,7 @@ const CharacterInfo = ({ data, pagination, setPagination }) => {
         menuItem: first ? first : fullName,
         render: () => (
           <Tab.Pane>
-            <Character character={char} />
+            <Character key={index} character={char} />
           </Tab.Pane>
         ),
       };

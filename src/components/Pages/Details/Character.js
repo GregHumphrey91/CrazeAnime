@@ -123,7 +123,7 @@ const Character = ({ character, activeTransition }) => {
               name: { first, last, full },
             } = actor;
             return (
-              <List.Item>
+              <List.Item key={index}>
                 <Image avatar src={medium} />
                 <List.Content>
                   <List.Header>{full ? full : `${first} ${last}`}</List.Header>

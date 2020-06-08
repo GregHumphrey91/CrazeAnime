@@ -42,7 +42,7 @@ const AnimeInfo = ({ data }) => {
         <Transition transitionOnMount={true} animation="fade up" duration={500}>
           <Rail>
             <Segment raised>
-              <Statistic color={averageScore < 60 ? "red" : "green"} size="">
+              <Statistic color={averageScore < 60 ? "red" : "green"}>
                 <Statistic.Label>Score</Statistic.Label>
                 <Statistic.Value>
                   {averageScore}{" "}
@@ -81,7 +81,9 @@ const AnimeInfo = ({ data }) => {
             <Segment raised>
               <h4>Genres </h4>
               {genres.map((genre, index) => (
-                <Label color={colors[index]}>{genre}</Label>
+                <Label key={index} color={colors[index]}>
+                  {genre}
+                </Label>
               ))}
             </Segment>
           </Rail>
