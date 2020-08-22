@@ -70,4 +70,10 @@ body {
   height: auto;
 }
 
+.info-controller .pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 /*# sourceMappingURL=App.css.map */

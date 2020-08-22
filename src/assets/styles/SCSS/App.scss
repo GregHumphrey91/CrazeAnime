@@ -70,3 +70,11 @@ body {
 .character {
   height: auto;
 }
+
+.info-controller {
+  .pagination {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}

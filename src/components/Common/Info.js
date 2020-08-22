@@ -1,4 +1,5 @@
 import React from "react";
+import Util from "../Utils/Util";
 import {
   Segment,
   Statistic,
@@ -53,7 +54,9 @@ const Info = ({ info, activeTransition }) => {
         <Segment>
           <h2>Bio</h2>
           <br />
-          {description && description.replace(/(<([^>]+)>)/gi,"") }
+          {description &&
+            description.replace(/(<([^>]+)>)/gi, "") &&
+            Util.truncate(description, 1400)}
         </Segment>
       </Transition>
     ) : (
@@ -114,7 +117,7 @@ const Info = ({ info, activeTransition }) => {
   const renderVoicedBy = () => {
     return voiceActors ? (
       <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <List horizontal size="massive">
+        <List horizontal size="medium">
           Voiced By
           <br />
           <br />

@@ -46,7 +46,7 @@ const Details = ({
     return <Error error={error} />;
   } else {
     return (
-      <div>
+      <div className="Results">
         <Menu color="red" size="huge">
           <Menu.Item
             name="Info"

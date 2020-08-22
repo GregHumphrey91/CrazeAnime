@@ -51,13 +51,14 @@ const InfoController = ({ activeItem, data, pagination, setPagination }) => {
   };
 
   return (
-    <div>
+    <div className="info-controller container">
       <Tab
         menu={{ fluid: true, vertical: true, tabular: "right" }}
         panes={panes()}
       />
       <br />
       <Pagination
+      className="pagination"
         onPageChange={changePage}
         activePage={currentPage}
         totalPages={lastPage}
