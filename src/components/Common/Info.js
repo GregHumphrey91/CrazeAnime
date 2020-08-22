@@ -9,8 +9,9 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
-const Character = ({ character, activeTransition }) => {
-  const { node, role, voiceActors } = character;
+
+const Info = ({ info, activeTransition }) => {
+  const { node, role, voiceActors } = info;
   const {
     description,
     image: { large },
@@ -52,7 +53,7 @@ const Character = ({ character, activeTransition }) => {
         <Segment>
           <h2>Bio</h2>
           <br />
-          {description && description.replace(/(<([^>]+)>)/gi, "")}
+          {description && description.replace(/(<([^>]+)>)/gi,"") }
         </Segment>
       </Transition>
     ) : (
@@ -166,4 +167,4 @@ const Character = ({ character, activeTransition }) => {
   );
 };
 
-export default Character;
+export default Info;

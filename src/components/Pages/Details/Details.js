@@ -3,8 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Menu, Icon } from "semantic-ui-react";
 import { ANIME_DETAILS } from "../../../gql/Queries";
 import AnimeInfo from "./AnimeInfo";
-import CharacterInfo from "./CharacterInfo";
-import StaffInfo from "./StaffInfo";
+import InfoController from "../../Common/Info.controller";
 import Spinner from "../../Layout/Spinner";
 import Error from "../../Layout/Error";
 
@@ -19,7 +18,6 @@ const Details = ({
     perPage: 10,
   });
   // Apollo Hooks
-
   const { page, perPage } = pagination;
   const { loading, error, data } = useQuery(ANIME_DETAILS, {
     variables: { id, page, perPage },
@@ -30,18 +28,15 @@ const Details = ({
   const renderAction = () => {
     if (activeItem === "Info") {
       return <AnimeInfo data={data} />;
-    } else if (activeItem === "Characters") {
+    } else {
       return (
-        <CharacterInfo
+        <InfoController
+          activeItem={activeItem}
           data={data}
           pagination={pagination}
           setPagination={setPagination}
         />
       );
-    } else if (activeItem === "Staff") {
-      return <StaffInfo />;
-    } else {
-      return;
     }
   };
 

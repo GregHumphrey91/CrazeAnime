@@ -92,6 +92,39 @@ export const ANIME_DETAILS = gql`
         }
       }
 
+      staff(page: $page, perPage: $perPage) {
+        pageInfo {
+          currentPage
+          lastPage
+          perPage
+          total
+        }
+
+        edges {
+          id
+          role
+
+          node {
+            favourites
+            isFavourite
+            description(asHtml: false)
+            
+            image {
+              large
+              medium
+            }
+
+            name {
+              first
+              last
+              full
+              native
+              alternative
+            }
+          }
+        }
+      }
+
       characters(page: $page, perPage: $perPage) {
         pageInfo {
           currentPage
