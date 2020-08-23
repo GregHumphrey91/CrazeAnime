@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState  } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Menu, Icon } from "semantic-ui-react";
 import { ANIME_DETAILS } from "../../../gql/Queries";
@@ -21,7 +21,6 @@ const Details = ({
   const { page, perPage } = pagination;
   const { loading, error, data } = useQuery(ANIME_DETAILS, {
     variables: { id, page, perPage },
-    fetchPolicy: "no-cache",
   });
 
   const handleMenuChange = (e, { name }) => setActiveItem(name);
