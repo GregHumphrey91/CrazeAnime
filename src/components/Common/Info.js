@@ -1,15 +1,6 @@
 import React from "react";
-import Util from "../Utils/Util";
-import {
-  Segment,
-  Statistic,
-  Image,
-  Rating,
-  Rail,
-  Grid,
-  Transition,
-  List,
-} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
+import { Description, VoicedBy, Role, FanFavorite, Profile } from "./PageItems";
 
 const Info = ({ info, activeTransition }) => {
   const { node, role, voiceActors } = info;
@@ -20,23 +11,8 @@ const Info = ({ info, activeTransition }) => {
     name: { first, full, native },
   } = node;
 
-  const renderProfileImage = () => {
-    return large ? (
-      <Transition
-        transitionOnMount={true}
-        directional={activeTransition}
-        animation="fade down"
-        duration={500}
-      >
-        <Image circular src={large} wrapped ui={false} />
-      </Transition>
-    ) : (
-      ""
-    );
-  };
-
-  const renderCharacterName = () => {
-    return first || full ? (
+  const renderCharacterName =
+    first || full ? (
       <>
         <h1>{full ? full : first}</h1>
         <h2>{native}</h2>
@@ -46,122 +22,34 @@ const Info = ({ info, activeTransition }) => {
         <h2>{native}</h2>
       </>
     );
-  };
-
-  const renderDescription = () => {
-    return description ? (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <Segment>
-          <h2>Bio</h2>
-          <br />
-          {description &&
-            description.replace(/(<([^>]+)>)/gi, "") &&
-            Util.truncate(description, 1400)}
-        </Segment>
-      </Transition>
-    ) : (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <Segment>
-          <h2>Bio</h2>
-          <br />
-          N/A
-        </Segment>
-      </Transition>
-    );
-  };
-
-  const renderFanFavorite = () => {
-    return isFavourite ? (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <Rail>
-          <Segment raised>
-            Fan Favorite <br />
-            <Rating
-              icon="heart"
-              defaultRating={isFavourite ? 1 : 0}
-              maxRating={1}
-            />
-          </Segment>
-        </Rail>
-      </Transition>
-    ) : (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <Rail>
-          <Segment raised>
-            Fan Favorite
-            <br />
-            <Rating icon="heart" defaultRating={0} maxRating={1} />
-          </Segment>
-        </Rail>
-      </Transition>
-    );
-  };
-
-  const renderCharacterRole = () => {
-    return role ? (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <Statistic
-          color={
-            role === "MAIN" ? "red" : role === "SUPPORTING" ? "blue" : "grey"
-          }
-        >
-          <Statistic.Label>Role</Statistic.Label>
-          <Statistic.Value>{role}</Statistic.Value>
-        </Statistic>
-      </Transition>
-    ) : (
-      ""
-    );
-  };
-
-  const renderVoicedBy = () => {
-    return voiceActors ? (
-      <Transition transitionOnMount={true} animation="fade up" duration={500}>
-        <List horizontal size="medium">
-          Voiced By
-          <br />
-          <br />
-          {voiceActors.map((actor, index) => {
-            const {
-              image: { medium },
-              name: { first, last, full },
-            } = actor;
-            return (
-              <List.Item key={index}>
-                <Image avatar src={medium} />
-                <List.Content>
-                  <List.Header>{full ? full : `${first} ${last}`}</List.Header>
-                </List.Content>
-              </List.Item>
-            );
-          })}
-        </List>
-      </Transition>
-    ) : (
-      ""
-    );
-  };
 
   return (
     <Grid className="character" columns={2}>
       <Grid.Row>
         <Grid.Column>
-          {renderProfileImage()}
-          {renderCharacterName()}
+          <Profile large={large} activeTransition={activeTransition} />
+          {renderCharacterName}
         </Grid.Column>
 
-        <Grid.Column>{renderDescription()}</Grid.Column>
+        <Grid.Column>
+          <h2>Bio</h2>
+          <Description description={description} />
+        </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column>{renderFanFavorite()}</Grid.Column>
+        <Grid.Column>
+          <FanFavorite isFavourite={isFavourite} />
+        </Grid.Column>
 
-        <Grid.Column>{renderCharacterRole()}</Grid.Column>
+        <Grid.Column>
+          <Role role={role} />
+        </Grid.Column>
       </Grid.Row>
 
       <Grid.Row>
         <Grid.Column>
           <br />
-          {renderVoicedBy()}
+          <VoicedBy voiceActors={voiceActors} />
         </Grid.Column>
 
         <Grid.Column></Grid.Column>

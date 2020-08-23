@@ -18,6 +18,7 @@ const InfoController = ({ activeItem, data, pagination, setPagination }) => {
 
   const changePage = (e, data) => {
     const { activePage } = data;
+
     setPagination({
       ...pagination,
       page: activePage,
@@ -58,7 +59,7 @@ const InfoController = ({ activeItem, data, pagination, setPagination }) => {
       />
       <br />
       <Pagination
-      className="pagination"
+        className="pagination"
         onPageChange={changePage}
         activePage={currentPage}
         totalPages={lastPage}

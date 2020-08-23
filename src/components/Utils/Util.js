@@ -1,6 +1,9 @@
 class Util {
   static truncate(str, n) {
-    return str.length > n ? str.substr(0, n - 1) + "..." : str;
+    let string = str;
+    string = string.replace(/(<([^>]+)>)/gi, "");
+
+    return string.length > n ? string.substr(0, n - 1) + "..." : string;
   }
 }
 
