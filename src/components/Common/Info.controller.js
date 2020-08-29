@@ -2,18 +2,13 @@ import React from "react";
 import { Tab, Pagination } from "semantic-ui-react";
 import Info from "./Info";
 
-const InfoController = ({ activeItem, data, pagination, setPagination }) => {
-  const {
-    Media: { characters, staff },
-  } = data;
-
-  const { edges, pageInfo } =
-    activeItem === "Staff"
-      ? staff
-      : activeItem === "Characters"
-      ? characters
-      : [];
-
+const InfoController = ({
+  activeItem,
+  edges,
+  pageInfo,
+  pagination,
+  setPagination,
+}) => {
   const { currentPage, lastPage } = pageInfo;
 
   const changePage = (e, data) => {

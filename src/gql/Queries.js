@@ -74,12 +74,11 @@ export const SEARCH_BY_GENRE = gql`
 `;
 
 export const ANIME_DETAILS = gql`
-  query($id: Int, $page: Int, $perPage: Int) {
+  query($id: Int) {
     Media(id: $id, type: ANIME) {
       id
       title {
         english
-        native
         userPreferred
       }
       coverImage {
@@ -89,80 +88,6 @@ export const ANIME_DETAILS = gql`
       studios(isMain: true) {
         nodes {
           name
-        }
-      }
-
-      staff(page: $page, perPage: $perPage) {
-        pageInfo {
-          currentPage
-          lastPage
-          perPage
-          total
-        }
-
-        edges {
-          id
-          role
-
-          node {
-            favourites
-            isFavourite
-            description(asHtml: false)
-            
-            image {
-              large
-              medium
-            }
-
-            name {
-              first
-              last
-              full
-              native
-              alternative
-            }
-          }
-        }
-      }
-
-      characters(page: $page, perPage: $perPage) {
-        pageInfo {
-          currentPage
-          lastPage
-          perPage
-          total
-        }
-        edges {
-          node {
-            id
-            name {
-              first
-              last
-              full
-              native
-            }
-            image {
-              large
-            }
-            description(asHtml: false)
-            isFavourite
-            siteUrl
-          }
-
-          role
-
-          voiceActors(sort: LANGUAGE) {
-            image {
-              medium
-            }
-
-            name {
-              first
-              last
-              full
-              native
-            }
-          }
         }
       }
 
@@ -280,6 +205,96 @@ export const ANIME_DETAILS = gql`
       autoCreateForumThread
       isRecommendationBlocked
       modNotes
+    }
+  }
+`;
+
+export const ANIME_CHARACTERS = gql`
+  query($id: Int, $page: Int, $perPage: Int) {
+    Media(id: $id, type: ANIME) {
+      id
+
+      characters(page: $page, perPage: $perPage) {
+        pageInfo {
+          currentPage
+          lastPage
+          perPage
+          total
+        }
+        edges {
+          node {
+            id
+            name {
+              first
+              last
+              full
+              native
+            }
+            image {
+              large
+            }
+            description(asHtml: false)
+            isFavourite
+            siteUrl
+          }
+
+          role
+
+          voiceActors(sort: LANGUAGE) {
+            image {
+              medium
+            }
+
+            name {
+              first
+              last
+              full
+              native
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const ANIME_STAFF = gql`
+  query($id: Int, $page: Int, $perPage: Int) {
+    Media(id: $id, type: ANIME) {
+      id
+
+      staff(page: $page, perPage: $perPage) {
+        pageInfo {
+          currentPage
+          lastPage
+          perPage
+          total
+        }
+
+        edges {
+          id
+          role
+
+          node {
+            favourites
+            isFavourite
+            description(asHtml: false)
+
+            image {
+              large
+              medium
+            }
+
+            name {
+              first
+              last
+              full
+              native
+              alternative
+            }
+          }
+        }
+      }
     }
   }
 `;
