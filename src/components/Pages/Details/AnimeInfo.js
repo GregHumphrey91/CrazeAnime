@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Grid, Segment, Header, Divider } from "semantic-ui-react";
 import {
   Rating,
+  ExternalLinks,
   Format,
   Genres,
   Description,
@@ -21,6 +22,7 @@ const AnimeInfo = ({ data }) => {
       coverImage: { medium },
       countryOfOrigin,
       description,
+      externalLinks,
       startDate,
       endDate,
       episodes,
@@ -38,6 +40,7 @@ const AnimeInfo = ({ data }) => {
       <Header as="h1">{english ? english : userPreferred}</Header>
       <Banner bannerImage={bannerImage} medium={medium} />
       <Description description={description} />
+      <ExternalLinks externalLinks={externalLinks} />
       <Segment>
         <Grid columns={2} stackable textAlign="center">
           <Grid.Row verticalAlign="middle">
