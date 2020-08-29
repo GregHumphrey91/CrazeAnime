@@ -1,11 +1,12 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Menu, Icon } from "semantic-ui-react";
 import { ANIME_DETAILS } from "../../../gql/Queries";
 import AnimeInfo from "./AnimeInfo";
-import InfoController from "../../Common/Info.controller";
 import Spinner from "../../Layout/Spinner";
 import Error from "../../Layout/Error";
+import Characters from "./Characters";
+import Staff from "./Staff";
 
 const Details = ({
   match: {
@@ -13,27 +14,23 @@ const Details = ({
   },
 }) => {
   const [activeItem, setActiveItem] = useState("Info");
-  const [pagination, setPagination] = useState({
-    page: 1,
-    perPage: 10,
-  });
+
   // Apollo Hooks
-  const { page, perPage } = pagination;
   const { loading, error, data } = useQuery(ANIME_DETAILS, {
-    variables: { id, page, perPage },
+    variables: { id },
   });
 
   const handleMenuChange = (e, { name }) => setActiveItem(name);
+
   const renderAction =
     activeItem === "Info" ? (
       <AnimeInfo data={data} />
+    ) : activeItem === "Characters" ? (
+      <Characters id={id} activeItem={activeItem} />
+    ) : activeItem === "Staff" ? (
+      <Staff id={id} activeItem={activeItem} />
     ) : (
-      <InfoController
-        activeItem={activeItem}
-        data={data}
-        pagination={pagination}
-        setPagination={setPagination}
-      />
+      <></>
     );
 
   if (loading) {

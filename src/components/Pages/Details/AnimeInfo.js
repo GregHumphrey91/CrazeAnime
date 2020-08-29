@@ -1,10 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  Grid,
-  Segment,
-  Header,
-  Divider,
-} from "semantic-ui-react";
+import { Grid, Segment, Header, Divider } from "semantic-ui-react";
 import {
   Rating,
   Format,
