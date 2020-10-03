@@ -24,7 +24,7 @@ const Info = ({ info, activeTransition }) => {
     );
 
   return (
-    <Grid className="character" columns={2}>
+    <Grid stackable className="character" columns={2}>
       <Grid.Row>
         <Grid.Column>
           <Profile large={large} activeTransition={activeTransition} />
