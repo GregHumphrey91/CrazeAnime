@@ -5,8 +5,7 @@ import Spinner from "../../Layout/Spinner";
 import { GENRE_COLLECTION, SEARCH_BY_GENRE } from "../../../gql/Queries";
 import Error from "../../Layout/Error";
 import Results from "../../Layout/Results";
-import CategoryMenu from "../../Layout/CategoryMenu";
-import Search from "../Search/Search";
+import SearchMenu from "../../Layout/SearchMenu";
 
 const Home = (props) => {
   // State Hooks
@@ -17,7 +16,7 @@ const Home = (props) => {
     perPage: 10,
   });
 
-  // Apollo Hooks
+  // Load Genres
   const { loading: genreLoading, error: genreError, data: genres } = useQuery(
     GENRE_COLLECTION
   );
@@ -26,52 +25,50 @@ const Home = (props) => {
     { loading: searchLoading, error: searchError, data: results, fetchMore },
   ] = useLazyQuery(SEARCH_BY_GENRE);
 
-  // Effect Hooks
+  // Genre Pagination
   useEffect(() => {
     const { page, perPage } = pagination;
+
     if (activeGenre)
       getGenreResults({
         variables: { search, genre: activeGenre, page, perPage },
       });
   }, [activeGenre, getGenreResults, search, pagination]);
 
-  const renderHomePage = () => (
-    <div className="home">
-      <Search setSearch={setSearch} />
-      <br />
-      <Grid stretched columns={2}>
-        <Grid.Column width={2}>
-          <CategoryMenu
-            genres={genres.GenreCollection}
-            activeGenre={activeGenre}
-            setActiveGenre={setActiveGenre}
-            setSearch={setSearch}
-          />
-        </Grid.Column>
-        <Grid.Column width={14}>
-          {results ? (
-            <Results
-              {...props}
-              loading={searchLoading}
-              fetchMore={fetchMore}
-              pagination={pagination}
-              setPagination={setPagination}
-              results={results}
-            />
-          ) : (
-            ""
-          )}
-        </Grid.Column>
-      </Grid>
-    </div>
-  );
-
   if (genreLoading || searchLoading) {
     return <Spinner />;
   } else if (genreError || searchError) {
     return <Error error={genreError || searchError} />;
   } else {
-    return renderHomePage();
+    return (
+      <div className="home">
+        <br />
+        <Grid stackable stretched columns={2}>
+          <Grid.Column width={3}>
+            <SearchMenu
+              genres={genres.GenreCollection}
+              activeGenre={activeGenre}
+              setActiveGenre={setActiveGenre}
+              setSearch={setSearch}
+            />
+          </Grid.Column>
+          <Grid.Column width={13}>
+            {results ? (
+              <Results
+                {...props}
+                loading={searchLoading}
+                fetchMore={fetchMore}
+                pagination={pagination}
+                setPagination={setPagination}
+                results={results}
+              />
+            ) : (
+              ""
+            )}
+          </Grid.Column>
+        </Grid>
+      </div>
+    );
   }
 };
 export default Home;

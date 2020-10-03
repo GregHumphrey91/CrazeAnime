@@ -18,10 +18,6 @@ body {
   border: solid 1px white;
   height: auto;
 }
-.home .searchbar {
-  width: 50% !important;
-  margin: 0 auto !important;
-}
 
 .about {
   margin: 300px auto;

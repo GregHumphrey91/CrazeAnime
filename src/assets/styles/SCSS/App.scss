@@ -17,11 +17,6 @@ body {
   width: 95%;
   border: solid 1px white;
   height: auto;
-
-  .searchbar {
-    width: 50% !important;
-    margin: 0 auto !important;
-  }
 }
 
 .about {
@@ -30,6 +25,7 @@ body {
 
 .search-results {
   border: none !important;
+
   .no-results {
     margin: 50px 450px;
     padding: 100px;

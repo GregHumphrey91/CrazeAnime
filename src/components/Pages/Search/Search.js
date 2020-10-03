@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import { Form } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 
-const SearchBar = ({ setSearch }) => {
+const SearchBar = ({ setSearch, setActiveGenre }) => {
   const [state, setState] = useState("");
 
   const onChange = (e) => setState(e.target.value);
 
   const onSubmit = (e) => {
-    setSearch(state.trim());
-    setState("");
+    if (e.charCode === 13) {
+      setSearch(state.trim());
+      setActiveGenre("Action");
+      setState("");
+    }
   };
+
   return (
-    <>
-      <Form className="searchbar" onSubmit={onSubmit}>
-        <Form.Input
-          icon="search"
-          labelPosition="right"
-          placeholder="Search"
-          onChange={onChange}
-          value={state}
-          required
-        />
-      </Form>
-    </>
+    <Input
+      icon="search"
+      placeholder="Search"
+      onChange={onChange}
+      onKeyPress={onSubmit}
+      value={state}
+    />
   );
 };
 

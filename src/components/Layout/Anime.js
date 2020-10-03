@@ -14,6 +14,12 @@ const Anime = (props) => {
     episodes,
   } = result;
 
+  const showDetails = () => {
+    props.history.push({
+      pathname: `/details/${id}`,
+    });
+  };
+
   const formatDate = (data) => {
     if (data.year && data.month && data.day) {
       // month arr is 0 index based
@@ -31,48 +37,8 @@ const Anime = (props) => {
     return Math.round(score / 20);
   };
 
-  const renderRunTime = () => {
-    const formatedStartDate = formatDate(startDate);
-    const formatedEndDate = formatDate(endDate);
-
-    if (formatedStartDate !== formatedEndDate) {
-      return `${formatedStartDate} - ${formatedEndDate}`;
-    } else {
-      return `${formatedStartDate}`;
-    }
-  };
-
-  const renderRating = () => {
-    if (averageScore) {
-      return (
-        <Card.Content extra>
-          Rating:{" "}
-          <Rating
-            icon="star"
-            defaultRating={formatRating(averageScore)}
-            maxRating={5}
-          />
-        </Card.Content>
-      );
-    } else {
-      return <Card.Content>Not yet rated</Card.Content>;
-    }
-  };
-
-  const renderEpisodes = () =>
-    episodes > 1
-      ? `${episodes} Episodes`
-      : !episodes
-      ? ""
-      : `${episodes} Episode`;
-
-  const renderTitle = () => (english ? english : userPreferred);
-
-  const showDetails = () => {
-    props.history.push({
-      pathname: `/details/${id}`,
-    });
-  };
+  const formatedStartDate = formatDate(startDate);
+  const formatedEndDate = formatDate(endDate);
 
   return (
     <div className="anime">
@@ -82,18 +48,39 @@ const Anime = (props) => {
             <Image className="thumbnail" src={medium} wrapped ui={false} />
           </Image.Group>
           <Card.Content>
-            <Card.Header className="title">{renderTitle()}</Card.Header>
+            <Card.Header className="title">
+              {english ? english : userPreferred}
+            </Card.Header>
             <br />
             <Card.Meta>
               <span className="date">
                 <h4>Original Runtime</h4>
-                {renderRunTime()}
+                {formatedStartDate !== formatedEndDate
+                  ? `${formatedStartDate} - ${formatedEndDate}`
+                  : `${formatedStartDate}`}
               </span>
             </Card.Meta>
             <br />
-            <Card.Description>{renderEpisodes()}</Card.Description>
+            <Card.Description>
+              {episodes > 1
+                ? `${episodes} Episodes`
+                : !episodes
+                ? ""
+                : `${episodes} Episode`}
+            </Card.Description>
           </Card.Content>
-          {renderRating()}
+          {averageScore ? (
+            <Card.Content extra>
+              Rating:{" "}
+              <Rating
+                icon="star"
+                defaultRating={formatRating(averageScore)}
+                maxRating={5}
+              />
+            </Card.Content>
+          ) : (
+            <Card.Content>Not yet rated</Card.Content>
+          )}
         </Card>
       </Transition>
     </div>

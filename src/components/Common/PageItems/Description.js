@@ -8,7 +8,7 @@ const Description = ({ description }) => {
 
     return (
       <Transition transitionOnMount={true} animation="fade down" duration={500}>
-        <Container text>
+        <Container text fluid>
           <br />
           {desc}
         </Container>
